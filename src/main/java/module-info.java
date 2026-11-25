@@ -9,7 +9,8 @@ module es.um.tds.gastos {
    // opens tds.gastos.vista to javafx.fxml;
 
     // Las tablas de JavaFX leen las propiedades del modelo
-   // opens tds.gastos.negocio.modelo to javafx.base;
+    opens tds.gastos.negocio.modelo to javafx.base;   // la descomentamos ahora que el paquete ya no está vacío
 
     exports tds.gastos;
+    exports tds.gastos.negocio.modelo;  // añadimos su exports para q el paquete quede visible
 }
