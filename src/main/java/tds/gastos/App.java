@@ -9,9 +9,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setScene(new Scene(new Label("Gestión de Gastos"), 400, 200));
-        stage.setTitle("Gestión de Gastos");
-        stage.show();
+        Configuracion configuracion = new ConfiguracionMemoriaImpl();
+        Configuracion.setInstancia(configuracion);
+
+        configuracion.getSceneManager().inicializar(stage);
+        configuracion.getSceneManager().showVentanaPrincipal();
     }
 
     public static void main(String[] args) {
