@@ -73,6 +73,17 @@
           <mainClass>es.um.tds.gastos/tds.gastos.App</mainClass>
         </configuration>
       </plugin>
+      
+      <!-- Para poder lanzar los tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <configuration>
+          <useModulePath>false</useModulePath>   <!-- esto es pq daba error al chocar el module-info.java con el surefire -->
+        </configuration>                         <!-- con esto de 'false' hacemos que maven-surrefire ejecute los tests por classpath normal-->
+      </plugin>
+      
     </plugins>
   </build>
 </project>
