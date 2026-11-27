@@ -13,7 +13,8 @@ public interface GastoRepository {
      *
      * @return Lista de gastos.
      */
-    List<Gasto> getGastos();
+    List<Gasto> getGastos()
+    		throws ErrorPersistenciaException;
 
     /**
      * Busca un gasto por su identificador.
@@ -23,7 +24,7 @@ public interface GastoRepository {
      * @throws ElementoNoEncontradoException si no existe.
      */
     Gasto findById(Integer id)
-            throws ElementoNoEncontradoException;
+            throws ElementoNoEncontradoException,  ErrorPersistenciaException;
 
     /**
      * Añade un gasto al repositorio.

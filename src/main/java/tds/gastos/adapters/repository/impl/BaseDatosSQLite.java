@@ -9,20 +9,45 @@ import tds.gastos.adapters.repository.exceptions.ErrorPersistenciaException;
 
 public class BaseDatosSQLite {
 
-    private static final String URL = "jdbc:sqlite:gestion-gastos.db";
+    private static final String URL_PREDETERMINADA =
+            "jdbc:sqlite:gestion-gastos.db";
+
+    private final String url;
 
     public BaseDatosSQLite() throws ErrorPersistenciaException {
+        this(URL_PREDETERMINADA);
+    }
+
+    public BaseDatosSQLite(String url) throws ErrorPersistenciaException {
+
+        if (url == null || url.isBlank()) {
+            throw new IllegalArgumentException(
+                    "La URL de la base de datos no puede estar vacía"
+            );
+        }
+
+        this.url = url;
         crearTablas();
     }
 
     public Connection getConnection() throws SQLException {
-        Connection conexion = DriverManager.getConnection(URL);
+
+        Connection conexion = DriverManager.getConnection(url);
 
         try (Statement statement = conexion.createStatement()) {
+
             statement.execute("PRAGMA foreign_keys = ON");
+
             return conexion;
+
         } catch (SQLException e) {
-            conexion.close();
+
+            try {
+                conexion.close();
+            } catch (SQLException errorCierre) {
+                e.addSuppressed(errorCierre);
+            }
+
             throw e;
         }
     }

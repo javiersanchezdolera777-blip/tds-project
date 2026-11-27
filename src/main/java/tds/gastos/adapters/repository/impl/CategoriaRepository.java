@@ -14,7 +14,8 @@ public interface CategoriaRepository {
      *
      * @return Lista de categorías.
      */
-    List<Categoria> getCategorias();
+    List<Categoria> getCategorias()
+    		throws ErrorPersistenciaException;
 
     /**
      * Busca una categoría por su identificador.
@@ -22,9 +23,10 @@ public interface CategoriaRepository {
      * @param id Identificador de la categoría.
      * @return Categoría encontrada.
      * @throws ElementoNoEncontradoException si no existe.
+     * @throws ErrorPersistenciaException 
      */
     Categoria findById(Integer id)
-            throws ElementoNoEncontradoException;
+            throws ElementoNoEncontradoException, ErrorPersistenciaException;
 
     /**
      * Busca una categoría por su nombre.
@@ -34,7 +36,8 @@ public interface CategoriaRepository {
      * @throws ElementoNoEncontradoException si no existe.
      */
     Categoria findByNombre(String nombre)
-            throws ElementoNoEncontradoException;
+            throws ElementoNoEncontradoException,
+             ErrorPersistenciaException;
 
     /**
      * Añade una categoría al repositorio.
