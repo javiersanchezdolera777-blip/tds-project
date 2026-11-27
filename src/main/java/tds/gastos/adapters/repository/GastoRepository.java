@@ -1,4 +1,4 @@
-package tds.gastos.adapters.repository.impl;
+package tds.gastos.adapters.repository;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public interface GastoRepository {
      * @throws ErrorPersistenciaException si ocurre un error de persistencia.
      */
     void removeGasto(Gasto gasto)
-            throws ErrorPersistenciaException;
+            throws ErrorPersistenciaException, ElementoNoEncontradoException;
 
     /**
      * Actualiza un gasto y devuelve la referencia al gasto actualizado.
@@ -54,5 +54,5 @@ public interface GastoRepository {
      *         o el gasto no existe.
      */
     Gasto updateGasto(Gasto gasto)
-            throws ErrorPersistenciaException;
+            throws ErrorPersistenciaException, ElementoNoEncontradoException;
 }
